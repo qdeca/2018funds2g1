@@ -43,7 +43,7 @@ public class JavaSyntaxDemo {
         		System.out.println("Too bad");
         	}
         	
-        	
+        	//test
         	// alternative to if...then...else
         	switch(balance) {
         	case 200 : System.out.println("you have 200 €");
