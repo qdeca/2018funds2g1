@@ -44,6 +44,7 @@ public class JavaSyntaxDemo {
         	}
         	
         	
+        	// alternative to if...then...else
         	switch(balance) {
         	case 200 : System.out.println("you have 200 €");
         				break;
