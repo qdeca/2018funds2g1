@@ -26,8 +26,7 @@ public class JavaSyntaxDemo {
 
     public static void main(String[] args){
     	
-    	
-    	
+
 //    	Scanner scanner = new Scanner(System.in);
 //    	try { //this is a try-catch block, we will discuss it further
 //           	System.out.println("Please enter your balance : ");
@@ -71,12 +70,22 @@ public class JavaSyntaxDemo {
 //    	    System.out.println("Invalid Entry");
 //    	}
     	
-    	Circle bigCircle = new Circle(60);
-        Circle smallCircle = new Circle();
-        smallCircle.setRadius(20);
+//    	Circle bigCircle = new Circle(60);
+//        Circle smallCircle = new Circle();
+//        smallCircle.setRadius(20);
+//        
+//        System.out.println("big circle radius :" + bigCircle.getRadius());
+//        System.out.println("small circle radius :" + smallCircle.getRadius());
         
-        System.out.println("big circle radius :" + bigCircle.getRadius());
-        System.out.println("small circle radius :" + smallCircle.getRadius());
-        
+    	String goodLogin = "admin";
+    	
+    	Scanner scanner = new Scanner(System.in);
+    	String userInput = scanner.nextLine();
+    	if (goodLogin.equals(userInput)) {
+    		System.out.println("You are authenticated");
+    	} else {
+    		System.out.println("Wrong login");
+    	}
+    	scanner.close();
     }
 }
