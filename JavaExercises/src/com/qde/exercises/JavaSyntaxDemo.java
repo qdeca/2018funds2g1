@@ -32,7 +32,7 @@ public class JavaSyntaxDemo {
 //           	System.out.println("Please enter your balance : ");
 //
 //    		int balance = scanner.nextInt();
-//    		Customer customer1 = new Customer();
+    		Customer customer1 = new Customer();
 //        	SavingsAccount account = new SavingsAccount();
 //        	customer1.setName("John Smith");
 //        	customer1.setAddress("a random street");
@@ -106,5 +106,7 @@ public class JavaSyntaxDemo {
     		System.out.println("Wrong login");
     	}
     	scanner.close();
+   	
+    	
     }
 }
