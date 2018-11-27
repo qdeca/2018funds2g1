@@ -2,23 +2,23 @@ package com.qde.exercises.geometry;
 
 public class Square {
 
-	private float side;
+	private double side;
 
-	public float getSide() {
+	public double getSide() {
 		return side;
 	}
 
-	public void setSide(float side) {
+	public void setSide(double side) {
 		this.side = side;
 	}
 	
 	
 
-	public float getArea() {
+	public double getArea() {
 		
 	}
 	
-	public float getPerimeter() {
+	public double getPerimeter() {
 		
 	}
 }

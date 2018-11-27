@@ -2,22 +2,22 @@ package com.qde.exercises.geometry;
 
 public class Circle {
 	
-	private float radius;
+	private double radius;
 
-	public float getRadius() {
+	public double getRadius() {
 		return radius;
 	}
 
-	public void setRadius(float radius) {
+	public void setRadius(double radius) {
 		this.radius = radius;
 	}
 
 	
-	public float getArea() {
+	public double getArea() {
 		
 	}
 	
-	public float getPerimeter() {
+	public double getPerimeter() {
 		
 	}
 }

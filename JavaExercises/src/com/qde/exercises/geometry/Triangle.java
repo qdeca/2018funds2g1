@@ -2,42 +2,42 @@ package com.qde.exercises.geometry;
 
 public class Triangle {
 
-	private float base;
-	private float height;
-	private float sideA;
-	private float sideB;
+	private double base;
+	private double height;
+	private double sideA;
+	private double sideB;
 	
 	
-	public float getBase() {
+	public double getBase() {
 		return base;
 	}
-	public void setBase(float base) {
+	public void setBase(double base) {
 		this.base = base;
 	}
-	public float getHeight() {
+	public double getHeight() {
 		return height;
 	}
-	public void setHeight(float height) {
+	public void setHeight(double height) {
 		this.height = height;
 	}
-	public float getSideA() {
+	public double getSideA() {
 		return sideA;
 	}
-	public void setSideA(float sideA) {
+	public void setSideA(double sideA) {
 		this.sideA = sideA;
 	}
-	public float getSideB() {
+	public double getSideB() {
 		return sideB;
 	}
-	public void setSideB(float sideB) {
+	public void setSideB(double sideB) {
 		this.sideB = sideB;
 	}
 	
-	public float getArea() {
+	public double getArea() {
 		
 	}
 	
-	public float getPerimeter() {
+	public double getPerimeter() {
 		
 	}
 
