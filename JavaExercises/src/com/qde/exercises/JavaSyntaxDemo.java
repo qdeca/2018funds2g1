@@ -78,11 +78,30 @@ public class JavaSyntaxDemo {
 //        System.out.println("small circle radius :" + smallCircle.getRadius());
         
     	String goodLogin = "admin";
-    	
+    	String goodPassword = "password";
     	Scanner scanner = new Scanner(System.in);
-    	String userInput = scanner.nextLine();
-    	if (goodLogin.equals(userInput)) {
+    	System.out.println("Please enter your login");
+    	String userLoginInput = scanner.nextLine();
+    	System.out.println("Please enter your password");
+		String userPasswordInput = scanner.nextLine();
+    	if (goodLogin.equals(userLoginInput) 
+    			&& goodPassword.equals(userPasswordInput)) {
     		System.out.println("You are authenticated");
+    		System.out.println("Please choose an option between Create, Modify and Delete : ");
+    		String userMenuInput = scanner.nextLine();
+    		switch (userMenuInput) {
+    		case "Create": 
+    			System.out.println("Welcome to the Create page");
+    			break;
+    		case "Modify":
+    			System.out.println("Welcome to the Modify page");
+    			break;
+    		case "Delete":
+    			System.out.println("Welcome to the Delete page");
+    			break;
+    		default :
+    			System.out.println("Wrong input");
+    		}
     	} else {
     		System.out.println("Wrong login");
     	}
