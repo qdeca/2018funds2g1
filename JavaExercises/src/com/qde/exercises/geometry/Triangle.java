@@ -34,11 +34,11 @@ public class Triangle {
 	}
 	
 	public double getArea() {
-		
+		return this.getBase() * this.getHeight() / 2;
 	}
 	
 	public double getPerimeter() {
-		
+		return this.getBase() + this.getSideA() + this.getSideB();
 	}
 
 }
