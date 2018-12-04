@@ -77,7 +77,7 @@ public class JavaSyntaxDemo {
 //        System.out.println("small circle radius :" + smallCircle.getRadius());
 
 		String goodLogin = "admin";
-		String goodPassword = "password";
+		String goodPassword = "password"; // password you compare your input with
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Please enter your login");
 		String userLoginInput = scanner.nextLine();
