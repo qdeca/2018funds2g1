@@ -1,13 +1,15 @@
 package com.qde.exercises;
 
-import java.util.InputMismatchException;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.List;
 import java.util.Scanner;
-
-import com.qde.exercises.geometry.Circle;
 
 public class JavaSyntaxDemo {
 	private String demoVersion = "1.0_DEV";
-
+	
+	
 	public JavaSyntaxDemo() {
 
 	}
@@ -24,7 +26,8 @@ public class JavaSyntaxDemo {
 		this.demoVersion = demoVersion;
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args)  {
+		Logger log = new Logger("JavaSyntaxDemo");
 
 //    	Scanner scanner = new Scanner(System.in);
 //    	try { //this is a try-catch block, we will discuss it further
@@ -76,44 +79,57 @@ public class JavaSyntaxDemo {
 //        System.out.println("big circle radius :" + bigCircle.getRadius());
 //        System.out.println("small circle radius :" + smallCircle.getRadius());
 
-		String goodLogin = "admin";
-		String goodPassword = "password"; // password you compare your input with
-		Scanner scanner = new Scanner(System.in);
-		System.out.println("Please enter your login");
-		String userLoginInput = scanner.nextLine();
-		System.out.println("Please enter your password");
-		String userPasswordInput = scanner.nextLine();
-		if (goodLogin.equals(userLoginInput) && goodPassword.equals(userPasswordInput)) {
-			System.out.println("You are authenticated");
-			System.out.println("Please choose an option between Create, Modify and Delete : ");
-			boolean exit = false;
-			do {	// navigation in the menu ...
+		try {
+			List<String> fileLines = Files.readAllLines(Paths.get("credentials.txt"));
+			
+			
+			String goodLogin = fileLines.get(0);
+			String goodPassword = fileLines.get(1);
+			
+			Scanner scanner = new Scanner(System.in);
+			System.out.println("Please enter your login");
+			String userLoginInput = scanner.nextLine();
+			System.out.println("Please enter your password");
+			String userPasswordInput = scanner.nextLine();
+			if (goodLogin.equals(userLoginInput) && goodPassword.equals(userPasswordInput)) {
+				log.debug("main : Authentication successful");
 				
-				String userMenuInput = scanner.nextLine();
-				switch (userMenuInput) {
-				case "Create":
-					System.out.println("Welcome to the Create page");
-					break;
-				case "Modify":
-					System.out.println("Welcome to the Modify page");
-					break;
-				case "Delete":
-					System.out.println("Welcome to the Delete page");
-					break;
-				case "Quit":	// if the string is Quit or Exit the boolean is set to true
-				case "Exit":
-					exit = true;
-					System.out.println("Goodbye !");
-					break;
-				default:
-					System.out.println("Wrong input");
-				}
-			} while (!exit);	// ...as long as the exit boolean is false
+				System.out.println("You are authenticated");
+				System.out.println("Please choose an option between Create, Modify and Delete : ");
+				boolean exit = false;
+				do {	// navigation in the menu ...
+					
+					String userMenuInput = scanner.nextLine();
+					switch (userMenuInput) {
+					case "Create":
+						System.out.println("Welcome to the Create page");
+						break;
+					case "Modify":
+						System.out.println("Welcome to the Modify page");
+						break;
+					case "Delete":
+						System.out.println("Welcome to the Delete page");
+						break;
+					case "Quit":	// if the string is Quit or Exit the boolean is set to true
+					case "Exit":
+						exit = true;
+						System.out.println("Goodbye !");
+						break;
+					default:
+						System.out.println("Wrong input");
+					}
+				} while (exit == false);	// ...as long as the exit boolean is false
+											// alternative way : !exit
 
-		} else {
-			System.out.println("Wrong login");
-		}
-		scanner.close();
+			} else {
+				System.out.println("Wrong login");
+			}
+			scanner.close();
+
+		} catch(IOException e) {
+			log.fatal("File not found");
+		} 
+		
 
 	}
 }

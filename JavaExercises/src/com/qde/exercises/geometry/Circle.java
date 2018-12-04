@@ -1,18 +1,12 @@
 package com.qde.exercises.geometry;
 
-public class Circle implements Shape{
+public class Circle extends Ellipse implements Shape{
 	
 	
 	private double radius;
-
 	
-	
-	
-	public Circle() {
-	}
-
 	public Circle(double radius) {
-		this.radius = radius;
+		super(radius, radius);
 	}
 
 	public double getRadius() {
@@ -27,8 +21,5 @@ public class Circle implements Shape{
 	public double getArea() {
 		return Math.PI * this.getRadius() * this.getRadius();
 	}
-	
-	public double getPerimeter() {
-		return 2* Math.PI * this.getRadius();
-	}
+
 }
