@@ -6,7 +6,8 @@ public class LoggingTest {
 
 	
 	public static void main(String[] args) {
-		Logger log = new Logger();
-		log.message();
+		Logger log = new Logger("LoggingTest");
+		log.error("main : Warning ! An error occurred ! ");
+		log.info("main : random info ");
 	}
 }
