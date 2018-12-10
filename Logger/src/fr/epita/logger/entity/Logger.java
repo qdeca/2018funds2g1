@@ -23,7 +23,7 @@ public class Logger {
 	}
 
 	public void message() {
-		while (!init) { // if logger not initialized
+		while (init == false) { // if logger not initialized
 			init = initialize();
 		}
 		writer.write("test2"); // write text in our file
