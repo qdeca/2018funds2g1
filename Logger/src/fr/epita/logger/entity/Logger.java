@@ -33,7 +33,7 @@ public class Logger {
 			init = initialize();
 		}
 		SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-		writer.write(df.format(new Date()) + " " + this.callingClass + " " + severity.toString() + " : " + message); // write text in our file
+		writer.append(df.format(new Date()) + " " + this.callingClass + " " + severity.toString() + " : " + message + "\n"); // write text in our file
 		writer.close();
 	}
 
