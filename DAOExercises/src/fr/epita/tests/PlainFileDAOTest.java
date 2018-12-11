@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 import fr.epita.datamodel.Customer;
+import fr.epita.services.dao.CustomerDAO;
 
 public class PlainFileDAOTest {
 
@@ -13,6 +14,9 @@ public class PlainFileDAOTest {
 		Customer customer = new Customer();
 		customer.setAddress("14 rue de la paix");
 		customer.setName("Richard Wright");
+		Customer customer2 = new Customer();
+		customer2.setAddress("22 baker street");
+		customer2.setName("Robert Bichon");
 		
 		File file = new File("customers.db");
 		if (!file.exists()) {
@@ -22,16 +26,10 @@ public class PlainFileDAOTest {
 				e.printStackTrace();
 			}
 		}
-		try {
-			PrintWriter writer = new PrintWriter(file);
-			writer.write(customer.getName());
-			writer.write("\n");
-			writer.write(customer.getAddress());
-			writer.flush();
-			writer.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
+		
+		CustomerDAO dao = new CustomerDAO(file);
+		dao.create(customer);
+		dao.create(customer2);
 	}
 	
 }
