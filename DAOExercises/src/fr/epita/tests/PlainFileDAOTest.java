@@ -31,15 +31,15 @@ public class PlainFileDAOTest {
 		dao.create(customer);
 		dao.create(customer2);
 		
-		String match;
+		Customer match;
 		try {
 			match = dao.read("Robert Bichon", file);
 			if (match != null) {
-				System.out.println("A match was found with the name of " + match + " in the database");
+				System.out.println("A match was found with the name of " + match.getName() + match.getAddress() + " in the database");
 			}
-			String noMatch = dao.read("Rsfsfsetgtzsqezvzqe", file);
+			Customer noMatch = dao.read("Rsfsfsetgtzsqezvzqe", file);
 			if (noMatch != null) {
-				System.out.println("A match was found with the name of " + noMatch + " in the database");
+				System.out.println("A match was found with the name of " + noMatch.getName() + noMatch.getAddress() + " in the database");
 			} else {
 				System.out.println("no match was found for Rsfsfsetgtzsqezvzqe");
 			}

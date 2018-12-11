@@ -39,11 +39,16 @@ public class CustomerDAO {
 		writer.flush();
 	}
 	
-	public String read(String name, File file) throws IOException {
+	public Customer read(String name, File file) throws IOException {
 		List<String> fileLines = Files.readAllLines(file.toPath());
+		Customer customer = new Customer();
 		for (String line : fileLines) { // loop on all the lines of file
-			if (name.equals(line)) {
-				return name;
+			if (name.equals(line)) {	// if the name matches the line
+				customer.setName(name);  // put name in customer returned 
+										 // at the end
+				int index = fileLines.indexOf(line);
+				customer.setAddress(fileLines.get(index+1));
+				return customer;
 			}
 		}
 		return null;
