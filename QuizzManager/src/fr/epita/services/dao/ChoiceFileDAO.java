@@ -8,6 +8,7 @@ import java.nio.file.Paths;
 import java.util.List;
 
 import fr.epita.datamodel.Choice;
+import fr.epita.datamodel.MCQChoice;
 
 public class ChoiceFileDAO {
 
@@ -25,14 +26,13 @@ public class ChoiceFileDAO {
 		}
 	}
 
-	public void create(Choice choice) {
+	public void create(MCQChoice choice) {
 		writer.write("-----------------");
+
 		writer.write("\n");
-		writer.write(choice.getId());
+		writer.write(choice.getChoice());
 		writer.write("\n");
-		writer.write(choice.getLabel());
-		writer.write("\n");
-		writer.write(choice.getQuestion().getId());
+		writer.write(choice.getQuestion().getQuestion());
 		writer.write("\n");
 		writer.write(choice.isValid() ? "true" : "false");
 		writer.write("\n");
@@ -41,16 +41,16 @@ public class ChoiceFileDAO {
 		writer.flush();
 	}
 	
-	public Choice read(int id) {
+	public MCQChoice read(int id) {
 		try {
 			List<String> fileLines = Files.readAllLines(Paths.get("choices.db"));
-			Choice choice = new Choice();
+			MCQChoice choice = new MCQChoice();
 			for (String line : fileLines) {
-				if (line.equals(Integer.toString(id))) {
-					choice.setId(id);
-					int index = fileLines.indexOf(line);
-					choice.setLabel(fileLines.get(index+1));
-				}
+//				if (line.equals(Integer.toString(id))) {
+//					choice.setId(id);
+//					int index = fileLines.indexOf(line);
+//					choice.setChoice(fileLines.get(index+1));
+//				}
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
