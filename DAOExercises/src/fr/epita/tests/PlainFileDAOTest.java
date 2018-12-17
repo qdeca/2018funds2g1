@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 import fr.epita.datamodel.Customer;
-import fr.epita.services.dao.CustomerDAO;
+import fr.epita.services.dao.CustomerFileDAO;
 
 public class PlainFileDAOTest {
 
@@ -27,7 +27,7 @@ public class PlainFileDAOTest {
 			}
 		}
 		
-		CustomerDAO dao = new CustomerDAO(file);
+		CustomerFileDAO dao = new CustomerFileDAO(file);
 		dao.create(customer);
 		dao.create(customer2);
 		
