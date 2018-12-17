@@ -47,7 +47,7 @@ public class CustomerDAO {
 				customer.setName(name);  // put name in customer returned 
 										 // at the end
 				int index = fileLines.indexOf(line);
-				customer.setAddress(fileLines.get(index+1));
+				customer.setAddress(fileLines.get(index+1)); // the line after is the address
 				return customer;
 			}
 		}
