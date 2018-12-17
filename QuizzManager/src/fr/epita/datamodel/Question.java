@@ -1,24 +1,38 @@
 package fr.epita.datamodel;
 
 public class Question {
-
-	private int id;
 	
-	private String label;
+	private String question;
+	
+	private String[] topics;
+	
+	private int difficulty;
 
-	public int getId() {
-		return id;
+
+
+	public String getQuestion() {
+		return question;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setQuestion(String question) {
+		this.question = question;
 	}
 
-	public String getLabel() {
-		return label;
+	public String[] getTopics() {
+		return topics;
 	}
 
-	public void setLabel(String label) {
-		this.label = label;
+	public void setTopics(String[] topics) {
+		this.topics = topics;
 	}
+
+	public int getDifficulty() {
+		return difficulty;
+	}
+
+	public void setDifficulty(int difficulty) {
+		this.difficulty = difficulty;
+	}
+
+	
 }
