@@ -1,6 +1,9 @@
 package fr.epita.datamodel;
 
 public class Question {
+
+	// CREATE TABLE QUESTION(QUESTION VARCHAR(255) PRIMARY KEY,DIFFICULTY INTEGER(10));
+
 	
 	private String question;
 	
