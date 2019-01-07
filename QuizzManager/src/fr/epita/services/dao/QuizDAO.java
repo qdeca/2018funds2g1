@@ -1,6 +1,6 @@
 package fr.epita.services.dao;
 
-import fr.epita.datamodel.MCQQuestion;
+import fr.epita.datamodel.Quiz;
 
 public class QuizDAO {
 	
