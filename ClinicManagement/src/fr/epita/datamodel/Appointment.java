@@ -15,6 +15,13 @@ public class Appointment {
 	
 	private List<Nurse> nursesInvolved;
 
+	public Appointment(Doctor doctor, Patient patient, Date appointmentDate, AppointmentType type) {
+		this.doctor = doctor;
+		this.patient = patient;
+		this.appointmentDate = appointmentDate;
+		this.type = type;
+	}
+
 	public Doctor getDoctor() {
 		return doctor;
 	}
