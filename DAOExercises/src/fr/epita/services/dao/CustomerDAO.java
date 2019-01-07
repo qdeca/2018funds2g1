@@ -20,7 +20,6 @@ public class CustomerDAO {
 	public void create(Customer customer) {
 		try {
 			Connection connection = DriverManager.getConnection(DB_URI, DB_USERNAME, DB_PASSWORD);    // establishing connection to DB 
-
 			PreparedStatement statement = connection.prepareStatement("INSERT INTO CUSTOMER VALUES(?, ?)"); // setting up the SQL query
 			statement.setString(1, customer.getName()); // passing name parameter to the query
 			statement.setString(2, customer.getAddress()); // passing address parameter to the query
@@ -45,21 +44,26 @@ public class CustomerDAO {
 
 	}
 	
-	public List<Customer> readByName(String name) {
-		List<Customer> listCustomers = new ArrayList<Customer>();
+	public List<Customer> readByName(String name) { // search for any customer matching the given name
+		List<Customer> listCustomers = new ArrayList<Customer>(); // empty list of result
 		Connection connection;
 		try {
-			connection = DriverManager.getConnection(DB_URI, DB_USERNAME, DB_PASSWORD);
+			connection = DriverManager.getConnection(DB_URI, DB_USERNAME, DB_PASSWORD); // establish connection
 			PreparedStatement statement = connection.prepareStatement("SELECT NAME,ADDRESS FROM CUSTOMER WHERE NAME = ?"); // setting up the SQL query
 			statement.setString(1, name); // passing name parameter to the query
 			ResultSet result =  statement.executeQuery(); // executing query
-			while(result.next()) {
-				String SQLName = result.getString(1);
-				String SQLAddress = result.getString(2);
+			while(result.next()) {  // for all customers matching the name
+				String SQLName = result.getString(1); // get match name
+				String SQLAddress = result.getString(2); //get match address
+				Customer foundCustomer = new Customer();  // put it in a customer
+				foundCustomer.setName(SQLName);
+				foundCustomer.setAddress(SQLAddress);
+				listCustomers.add(foundCustomer); // add customer to the result list
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}    
+		return listCustomers;
 	}
 	
 	
