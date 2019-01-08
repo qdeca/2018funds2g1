@@ -9,17 +9,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.epita.datamodel.Customer;
+import fr.epita.services.Configuration;
 
 public class CustomerDAO {
 
-	private static final String DB_PASSWORD = "";
-	private static final String DB_USERNAME = "sa";
-	private static final String DB_URI = "jdbc:h2:C:/Formation/db/h2DS";
+	private String databaseURL;
+	private String databaseUsername;
+	private String databasePassword;
+	
+	public CustomerDAO() {
+		Configuration config = Configuration.getInstance();
+		databaseURL = config.getPropertyValue("db.url");
+		databaseUsername = config.getPropertyValue("db.username");
+		databasePassword = config.getPropertyValue("db.password");
+	}
+	
+//	private static final String databasePassword = "";
+//	private static final String databaseUsername = "sa";
+//	private static final String databaseURL = "jdbc:h2:C:/Formation/db/h2DS";
 										//"~/test/"
 
+	
+	
 	public void create(Customer customer) {
 		try {
-			Connection connection = DriverManager.getConnection(DB_URI, DB_USERNAME, DB_PASSWORD);    // establishing connection to DB 
+			Connection connection = DriverManager.getConnection(databaseURL, databaseUsername, databasePassword);    // establishing connection to DB 
 			PreparedStatement statement = connection.prepareStatement("INSERT INTO CUSTOMER VALUES(?, ?)"); // setting up the SQL query
 			statement.setString(1, customer.getName()); // passing name parameter to the query
 			statement.setString(2, customer.getAddress()); // passing address parameter to the query
@@ -32,7 +46,7 @@ public class CustomerDAO {
 	
 	public void updateName(Customer customer, String newName) {
 		try {
-			Connection connection = DriverManager.getConnection(DB_URI, DB_USERNAME, DB_PASSWORD);    // establishing connection to DB 
+			Connection connection = DriverManager.getConnection(databaseURL, databaseUsername, databasePassword);    // establishing connection to DB 
 
 			PreparedStatement statement = connection.prepareStatement("UPDATE CUSTOMER SET NAME= ? WHERE NAME= ?"); // setting up the SQL query
 			statement.setString(1, newName); // passing new name
@@ -48,7 +62,7 @@ public class CustomerDAO {
 		List<Customer> listCustomers = new ArrayList<Customer>(); // empty list of result
 		Connection connection;
 		try {
-			connection = DriverManager.getConnection(DB_URI, DB_USERNAME, DB_PASSWORD); // establish connection
+			connection = DriverManager.getConnection(databaseURL, databaseUsername, databasePassword); // establish connection
 			PreparedStatement statement = connection.prepareStatement("SELECT NAME,ADDRESS FROM CUSTOMER WHERE NAME = ?"); // setting up the SQL query
 			statement.setString(1, name); // passing name parameter to the query
 			ResultSet result =  statement.executeQuery(); // executing query
@@ -70,7 +84,7 @@ public class CustomerDAO {
 	public void delete(Customer customer) {
 
 		try {
-			Connection connection = DriverManager.getConnection(DB_URI, DB_USERNAME, DB_PASSWORD);    // establishing connection to DB 
+			Connection connection = DriverManager.getConnection(databaseURL, databaseUsername, databasePassword);    // establishing connection to DB 
 			PreparedStatement statement = connection.prepareStatement("DELETE FROM CUSTOMER WHERE NAME = ? AND ADDRESS = ?");
 			statement.setString(1, customer.getName()); // passing name parameter to the query
 			statement.setString(2, customer.getAddress()); // passing address parameter to the query
