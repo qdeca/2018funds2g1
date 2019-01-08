@@ -7,7 +7,7 @@ import java.util.Properties;
 
 public class Configuration {
 
-public Properties properties;
+	public Properties properties;
 	
 	private static Configuration configuration;   // this object is a singleton
 
@@ -16,6 +16,7 @@ public Properties properties;
 		try {
 			properties = new Properties();  // instantiation of a new properties set
 			properties.load(new FileInputStream(file));  // loading all the properties of the file
+										// create a map<key, value> of all properties
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
