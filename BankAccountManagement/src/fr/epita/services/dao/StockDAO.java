@@ -1,7 +1,6 @@
 package fr.epita.services.dao;
 
-import java.io.File;
-
+import fr.epita.datamodel.Stock;
 import fr.epita.services.Configuration;
 
 public class StockDAO {
@@ -12,7 +11,7 @@ public class StockDAO {
 		// TODO use the properties loaded in the config
 	}
 	
-	public void create() {
+	public void create(Stock stock) {
 		// TODO method to create new Stock in database
 		// 4 steps : connection, sql statement, parameter fill, execution
 	}
