@@ -25,7 +25,8 @@ public class XMLReaderTest {
 			Element el  = (Element) list.item(i);  // extract the "question" element
 			String order = el.getAttribute("order"); // get the "order" attribute
 			System.out.println(order);	// print
-			NodeList label = el.getElementsByTagName("label");
+			NodeList label = el.getElementsByTagName("label"); 
+			System.out.println(label.item(0).getTextContent()); // display the label of the question
 		}
 		
 	}
