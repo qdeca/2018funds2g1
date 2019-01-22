@@ -16,9 +16,14 @@ import org.xml.sax.SAXException;
 public class XMLReaderTest {
 	
 	public static void main(String[] args) throws ParserConfigurationException, SAXException, IOException {
+		
+		
+		//parsing file
 		DocumentBuilderFactory fact = DocumentBuilderFactory.newInstance();
 		DocumentBuilder builder = fact.newDocumentBuilder(); // create builder to parse the xml file
 		Document doc = builder.parse(new File("questions.xml")); // parse xml file with builder and store it in doc object
+		
+		
 		NodeList list = doc.getElementsByTagName("question"); // extract all questions from the xml file
 		
 		for (int i=0; i<list.getLength(); i++) { // loop on all questions
