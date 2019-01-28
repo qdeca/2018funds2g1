@@ -15,10 +15,16 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.TransformerFactoryConfigurationError;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathExpression;
+import javax.xml.xpath.XPathExpressionException;
+import javax.xml.xpath.XPathFactory;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
+
 import org.xml.sax.SAXException;
 
 import fr.epita.datamodel.Question;
@@ -57,8 +63,24 @@ public class QuestionXMLDAO {
 	}
 
 	
-	public List<String> getAllQuestionLabels() {
-		//TODO use xpath
+	public List<String> getAllQuestionLabels() throws ParserConfigurationException, SAXException, IOException, XPathExpressionException {
+		List<String> labelsToReturn = new ArrayList<>();
+		
+		Document doc = parseFile();
+		
+		//init xpath parser
+		XPathFactory xpathFactory = XPathFactory.newInstance();
+		XPath xpath = xpathFactory.newXPath();
+		
+		//create expression to get labels
+		XPathExpression expression = xpath.compile("//label");
+		NodeList listElements = (NodeList) expression.evaluate(doc, XPathConstants.NODESET);
+		//loop through elements to get labels
+		for (int i=0; i<listElements.getLength(); i++) {
+			labelsToReturn.add(listElements.item(i).getTextContent());
+		}
+			
+		return labelsToReturn;
 	}
 	
 	private String[] getAllTopicsFromQuestion(Element question) {

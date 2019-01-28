@@ -2,7 +2,7 @@ package fr.epita.tests;
 
 import java.io.File;
 import java.io.IOException;
-
+import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -15,8 +15,9 @@ import javax.xml.xpath.XPathFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
-import org.w3c.dom.xpath.XPathExpression;
 import org.xml.sax.SAXException;
+
+import fr.epita.services.dao.QuestionXMLDAO;
 
 public class XMLReaderTest {
 	
@@ -70,6 +71,17 @@ public class XMLReaderTest {
 		expression = "/questions/question[last()]"; // the last question from the root element questions
 		Element element = (Element) xpath.evaluate(expression, doc, XPathConstants.NODE);
 		System.out.println(element.getElementsByTagName("label").item(0).getTextContent());
+
+		System.out.println("***********************");
+		System.out.println("***********************");
+		System.out.println("***********************");
+
+		//example using the DAO method of xpath
+		QuestionXMLDAO dao = new QuestionXMLDAO();
+		List<String> labels = dao.getAllQuestionLabels();
+		for (String label : labels) {
+			System.out.println(label);
+		}
 	}
 
 	private static void readAllQuestions() throws ParserConfigurationException, SAXException, IOException {
