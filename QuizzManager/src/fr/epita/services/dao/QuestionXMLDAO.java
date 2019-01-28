@@ -42,12 +42,6 @@ public class QuestionXMLDAO {
 																								// (then text content)
 																								// from question element
 			int difficulty = Integer.valueOf(questionXML.getElementsByTagName("difficulty").item(0).getTextContent()); // getting
-																														// difficulty
-																														// element
-																														// (then
-																														// text
-																														// content)
-																														// from
 																														// question
 			question.setId(id);																											// element
 			question.setQuestion(label);
@@ -62,6 +56,11 @@ public class QuestionXMLDAO {
 		return listQuestions;
 	}
 
+	
+	public List<String> getAllQuestionLabels() {
+		//TODO use xpath
+	}
+	
 	private String[] getAllTopicsFromQuestion(Element question) {
 		// get element of tag name "topics"
 		Element topicsElement = (Element) question.getElementsByTagName("topics").item(0);

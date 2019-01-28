@@ -48,7 +48,7 @@ public class XMLReaderTest {
 		System.out.println("***********************");
 				
 		// example of attribute list retrieval
-		expression ="//@id";
+		expression ="//@id"; // all the attributes named "id"
 		NodeList attributeList = (NodeList) xpath.evaluate(expression, doc, XPathConstants.NODESET);
 		for (int i=0; i<attributeList.getLength(); i++) {
 			System.out.println(attributeList.item(i));
@@ -57,11 +57,19 @@ public class XMLReaderTest {
 		System.out.println("***********************");
 		System.out.println("***********************");
 		// example of operators
-		expression = "//topic | //label";
+		expression = "//topic | //label"; // all elements that are either named "topic" or "label"
 		elementList = (NodeList) xpath.evaluate(expression, doc, XPathConstants.NODESET);
 		for (int i=0; i<elementList.getLength(); i++) {
 			System.out.println(elementList.item(i).getTextContent());
 		}
+		
+		System.out.println("***********************");
+		System.out.println("***********************");
+		System.out.println("***********************");
+		// example of element list retrieval using hierarchy
+		expression = "/questions/question[last()]"; // the last question from the root element questions
+		Element element = (Element) xpath.evaluate(expression, doc, XPathConstants.NODE);
+		System.out.println(element.getElementsByTagName("label").item(0).getTextContent());
 	}
 
 	private static void readAllQuestions() throws ParserConfigurationException, SAXException, IOException {
