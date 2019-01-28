@@ -161,18 +161,26 @@ public class QuestionXMLDAO {
 			
 		}
 		
-		TransformerFactory fact = TransformerFactory.newInstance();
-		Transformer transformer = fact.newTransformer();
-		transformer.transform(new DOMSource(doc), new StreamResult(XML_FILENAME));
+		transformXMLFile(doc);
 		
 	
 	}
 	
-	public void delete(Question question) {
+	public void delete(Question question) throws ParserConfigurationException, SAXException, IOException, TransformerConfigurationException, TransformerFactoryConfigurationError, TransformerException {
 		//TODO parse file
+		Document doc = parseFile();
 		//TODO get question to delete with id
-		//TODO use "remove child" to root element
-		//TODO propagate transformation to xml file
+		NodeList listQuestions = doc.getElementsByTagName("question");
+		for (int i=0; i<listQuestions.getLength(); i++) {
+			Element questionXML = (Element) listQuestions.item(i);
+			int idXML = Integer.valueOf(questionXML.getAttribute("id")); // !! Assuming id is in the attributes
+			if (question.getId() == idXML) { //TODO add id to the question object
+				doc.getDocumentElement().removeChild(questionXML);
+			}
+			
+		}
+		
+		transformXMLFile(doc);
 	}
 
 }

@@ -28,8 +28,16 @@ public class XMLWriterTest {
 	public static void main(String[] args) throws ParserConfigurationException, SAXException, IOException, TransformerException {
 		//parsing file
 		//create();
-		modify();
+		//modify();
+		delete();
 		
+	}
+
+	private static void delete() throws SAXException, IOException, ParserConfigurationException, TransformerConfigurationException, TransformerFactoryConfigurationError, TransformerException {
+		QuestionXMLDAO dao = new QuestionXMLDAO();
+		List<Question> listQuestions = dao.getAllQuestions();
+		Question question = listQuestions.get(0);
+		dao.delete(question);
 	}
 
 	private static void modify() throws SAXException, IOException, ParserConfigurationException, TransformerException {
