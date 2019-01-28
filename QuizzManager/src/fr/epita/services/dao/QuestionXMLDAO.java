@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.security.auth.login.Configuration;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -28,6 +27,7 @@ public class QuestionXMLDAO {
 
 	private static final String XML_FILENAME = "questions.xml";
 
+
 	public List<Question> getAllQuestions() throws SAXException, IOException, ParserConfigurationException {
 		Document doc = parseFile();
 
@@ -36,7 +36,7 @@ public class QuestionXMLDAO {
 		for (int i = 0; i < list.getLength(); i++) {
 			Question question = new Question();
 			Element questionXML = (Element) list.item(i);
-			int order = Integer.valueOf(questionXML.getAttribute("order")); // getting order attribute from question
+			int id = Integer.valueOf(questionXML.getAttribute("id")); // getting id attribute from question
 																			// element
 			String label = questionXML.getElementsByTagName("label").item(0).getTextContent(); // getting label element
 																								// (then text content)
@@ -49,7 +49,7 @@ public class QuestionXMLDAO {
 																														// content)
 																														// from
 																														// question
-																														// element
+			question.setId(id);																											// element
 			question.setQuestion(label);
 			question.setDifficulty(difficulty);
 
@@ -112,7 +112,7 @@ public class QuestionXMLDAO {
 	private Document parseFile() throws ParserConfigurationException, SAXException, IOException {
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder builder = factory.newDocumentBuilder();
-		Document doc = builder.parse(new File("questions.xml"));
+		Document doc = builder.parse(new File(XML_FILENAME));
 		return doc;
 	}
 
@@ -121,10 +121,10 @@ public class QuestionXMLDAO {
 
 		TransformerFactory fact = TransformerFactory.newInstance();
 		Transformer transformer = fact.newTransformer();
-		transformer.transform(new DOMSource(doc), new StreamResult("questions.xml"));
+		transformer.transform(new DOMSource(doc), new StreamResult(XML_FILENAME));
 	}
 
-	public void update(Question question) throws SAXException, IOException, ParserConfigurationException {
+	public void update(Question question) throws SAXException, IOException, ParserConfigurationException, TransformerException {
 		//TODO parse file
 		Document doc = parseFile();
 		
@@ -161,7 +161,11 @@ public class QuestionXMLDAO {
 			
 		}
 		
-		//TODO propagate transformation to xml file
+		TransformerFactory fact = TransformerFactory.newInstance();
+		Transformer transformer = fact.newTransformer();
+		transformer.transform(new DOMSource(doc), new StreamResult(XML_FILENAME));
+		
+	
 	}
 	
 	public void delete(Question question) {

@@ -4,6 +4,7 @@ public class Question {
 
 	// CREATE TABLE QUESTION(QUESTION VARCHAR(255) PRIMARY KEY,DIFFICULTY INTEGER(10));
 
+	private int id;
 	
 	private String question;
 	
@@ -35,6 +36,14 @@ public class Question {
 
 	public void setDifficulty(int difficulty) {
 		this.difficulty = difficulty;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	
