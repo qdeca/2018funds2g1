@@ -33,14 +33,35 @@ public class XMLReaderTest {
 		DocumentBuilder builder = fact.newDocumentBuilder(); // create builder to parse the xml file
 		Document doc = builder.parse(new File("questions.xml")); // parse xml file with builder and store it in doc object
 		
+		//set up xpath parser
 		XPathFactory xpathFactory = XPathFactory.newInstance();
 		XPath xpath = xpathFactory.newXPath();
-		String elementList = xpath.evaluate("//*", "questions.xml");
-		//String elementList = expression.evaluate("questions.xml", XPathConstants.STRING);
-		System.out.println(elementList);
-		//		for (int i=0; i<elementList.getLength(); i++) {
-//			System.out.println(elementList.item(i).getTextContent());
-//		}
+		
+		// example of element list retrieval
+		String expression = "//topic"; // all the elements of the tag name "topic" in the file
+		NodeList elementList = (NodeList) xpath.evaluate(expression, doc, XPathConstants.NODESET);
+		for (int i=0; i<elementList.getLength(); i++) {
+			System.out.println(elementList.item(i).getTextContent());
+		}
+		System.out.println("***********************");
+		System.out.println("***********************");
+		System.out.println("***********************");
+				
+		// example of attribute list retrieval
+		expression ="//@id";
+		NodeList attributeList = (NodeList) xpath.evaluate(expression, doc, XPathConstants.NODESET);
+		for (int i=0; i<attributeList.getLength(); i++) {
+			System.out.println(attributeList.item(i));
+		}
+		System.out.println("***********************");
+		System.out.println("***********************");
+		System.out.println("***********************");
+		// example of operators
+		expression = "//topic | //label";
+		elementList = (NodeList) xpath.evaluate(expression, doc, XPathConstants.NODESET);
+		for (int i=0; i<elementList.getLength(); i++) {
+			System.out.println(elementList.item(i).getTextContent());
+		}
 	}
 
 	private static void readAllQuestions() throws ParserConfigurationException, SAXException, IOException {
