@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <questions>
-	<question order="1">
+	<question id="1">
 		<label>What is the definition of JVM ?</label>
 		<difficulty>2</difficulty>
 		<topics>
@@ -8,7 +8,7 @@
 			<topic>JVM</topic>
 		</topics>
 	</question>
-	<question order="2">
+	<question id="2">
 		<label>Can you read a .class file ?</label>
 		<difficulty>3</difficulty>
 		<topics>
